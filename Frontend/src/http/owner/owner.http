@@ -1,0 +1,32 @@
+POST http://localhost:3000/api/owners
+Content-Type: application/json
+
+  {
+   "id_owner": 3,
+   "nombre": "Pedro",
+   "apellido": "Picapiedra",
+   "numero_tel": "12345",
+   "direccion": "Calle Secundaria, Ciudad 33"
+  }
+
+###
+GET http://localhost:3000/api/owners
+
+###
+GET http://localhost:3000/api/owners/2
+
+###
+PUT http://localhost:3000/api/owners/2
+Content-Type: application/json
+
+  {
+  "nombre": "MarIA MODIFICADA",
+  "apellido": "Gómez",
+  "numero_tel": "9876543210",
+  "direccion": "Avenida Principal, Ciudad"
+  }
+
+###
+DELETE http://localhost:3000/api/owners/3
+
+```

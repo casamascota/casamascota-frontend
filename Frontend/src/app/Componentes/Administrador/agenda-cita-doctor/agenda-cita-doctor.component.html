@@ -1,0 +1,43 @@
+<app-navbar-doctor></app-navbar-doctor>
+<div class="body">
+  <div class="center">
+    <h1 class="display-4 mb-4" style="text-align: center;">Reserva de<span class="text-primary"> Citas</span></h1>
+
+    <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="ancho">
+        <mat-label>Fecha:</mat-label>
+        <input matInput type="date" formControlName="fecha" />
+        <div *ngIf="reservaForm.controls['fecha'].invalid && reservaForm.controls['fecha'].touched">
+          <div *ngIf="reservaForm.controls['fecha'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>Hora:</mat-label>
+        <input matInput type="text" formControlName="hora" />
+        <div *ngIf="reservaForm.controls['hora'].invalid && reservaForm.controls['hora'].touched">
+          <div *ngIf="reservaForm.controls['hora'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>Servicio:</mat-label>
+        <select matNativeControl id="Servicio_id_servicio" name="Servicio_id_servicio" formControlName="Servicio_id_servicio">
+          <option value=""></option>
+          <option value="{{ Servicio_id_servicio[0] }}">{{ Servicio_id_servicio[0] }}</option>
+          <option value="{{ Servicio_id_servicio[1] }}">{{ Servicio_id_servicio[1] }}</option>
+        </select>
+        <div *ngIf="reservaForm.controls['Servicio_id_servicio'].invalid && reservaForm.controls['Servicio_id_servicio'].touched">
+          <div *ngIf="reservaForm.controls['Servicio_id_servicio'].errors?.['required']">Este campo es obligatorio.</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>ID de la mascota:</mat-label>
+        <input matInput type="number" formControlName="Mascota_id_mascota" />
+        <div *ngIf="reservaForm.controls['Mascota_id_mascota'].invalid && reservaForm.controls['Mascota_id_mascota'].touched">
+          <div *ngIf="reservaForm.controls['Mascota_id_mascota'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <br>
+      <button button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="reservaForm.invalid" (click)="guardarCita()">Guardar</button>
+    </form>
+  </div>
+</div>

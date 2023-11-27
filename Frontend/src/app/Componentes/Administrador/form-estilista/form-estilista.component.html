@@ -1,0 +1,22 @@
+<app-navbar-administrador></app-navbar-administrador>
+<h2>Formulario de Registro de Estilista</h2>
+<form [formGroup]="estilistaForm" (ngSubmit)="onSubmit()">
+   <div>
+     <label for="id_estilista">ID de Estilista:</label>
+     <input type="number" formControlName="id_estilista" id="id_estilista">
+   </div>
+   <div>
+     <label for="nombre">Nombre:</label>
+     <input type="text" formControlName="nombre" id="nombre">
+   </div>
+   <div>
+     <label for="apellido">Apellido:</label>
+     <input type="text" formControlName="apellido" id="apellido">
+   </div>
+   <div>
+     <label for="numero_tel">Número de Teléfono:</label>
+     <input type="text" formControlName="numero_tel" id="numero_tel">
+   </div>
+   <button type="submit" [disabled]="!estilistaForm.valid">Guardar</button>
+ </form>
+ 

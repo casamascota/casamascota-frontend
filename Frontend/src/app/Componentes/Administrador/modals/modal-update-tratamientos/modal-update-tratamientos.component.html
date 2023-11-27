@@ -1,0 +1,30 @@
+<div class="body">
+    <div class="center">
+      <h1 class="display-4 mb-4" style="text-align: center;">Casa de la Mascota<span class="text-primary"> Actualizar Tratamiento</span></h1>
+      <form [formGroup]="formularioAdmTrat">
+        <mat-form-field class="ancho">
+            <mat-label>Fecha de inicio:</mat-label>
+            <input matInput type="date" formControlName="fecha_inicio" />
+            <div *ngIf="formularioAdmTrat.controls['fecha_inicio'].invalid && formularioAdmTrat.controls['fecha_inicio'].touched">
+            <div *ngIf="formularioAdmTrat.controls['fecha_inicio'].errors?.['required']"></div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="ancho">
+            <mat-label>Fecha de final:</mat-label>
+            <input matInput type="date" formControlName="fecha_final" />
+            <div *ngIf="formularioAdmTrat.controls['fecha_final'].invalid && formularioAdmTrat.controls['fecha_final'].touched">
+            <div *ngIf="formularioAdmTrat.controls['fecha_final'].errors?.['required']"></div>
+            </div>
+        </mat-form-field>
+        <mat-form-field class="ancho">
+            <mat-label>ID del Dueño:</mat-label>
+            <input matInput type="text" formControlName="Diagnostico_id_diagnostico" />
+            <div *ngIf="formularioAdmTrat.controls['Diagnostico_id_diagnostico'].invalid && formularioAdmTrat.controls['Diagnostico_id_diagnostico'].touched">
+            <div *ngIf="formularioAdmTrat.controls['Diagnostico_id_diagnostico'].errors?.['required']"></div>
+            </div>
+        </mat-form-field>
+        <br>
+        <button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formularioAdmTrat.invalid" (click)="actualizarformularioAdmTrat()">Guardar</button>        
+        </form>
+    </div>
+</div>

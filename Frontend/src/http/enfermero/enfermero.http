@@ -1,0 +1,32 @@
+POST http://localhost:3000/api/enfermeros/
+Content-Type: application/json
+
+{
+   "id": 2,
+   "nombre": "Enfermero 2",
+   "apellido": "Perez",
+   "numero_tel": "123422256",
+   "direccion": "Calle 123"
+}
+
+###
+GET http://localhost:3000/api/enfermeros/
+
+###
+GET http://localhost:3000/api/enfermeros/1
+
+###
+PUT http://localhost:3000/api/enfermeros/1
+Content-Type: application/json
+
+{
+   
+   "nombre": "Enfermero MOD",
+   "apellido": "Perez",
+   "numero_tel": "123456",
+   "direccion": "Calle 123"
+}
+
+
+###
+DELETE  http://localhost:3000/api/enfermeros/2

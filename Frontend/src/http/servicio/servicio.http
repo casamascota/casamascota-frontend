@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/servicios
+Content-Type: application/json
+
+{  
+   "id_servicio":2,
+   "tipo": "Peluqeuria",
+   "costo": 50
+}
+
+###
+GET http://localhost:3000/api/servicios

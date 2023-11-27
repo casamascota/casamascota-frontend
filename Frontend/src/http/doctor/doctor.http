@@ -1,0 +1,34 @@
+POST http://localhost:3000/api/doctores/
+Content-Type: application/json
+
+{
+  "id_doctor": 3,
+  "nombre": "Pedro_2",
+  "apellido": "Pérez",
+  "numero_tel": 55351234,
+  "direccion": "Calle Falsa 122334"
+}
+
+###
+
+GET http://localhost:3000/api/doctores
+
+###
+
+GET http://localhost:3000/api/doctores/1
+
+###
+
+PUT http://localhost:3000/api/doctores/1
+Content-Type: application/json
+
+{
+  "id_doctor": 1,
+  "nombre": "Pedro MODD",
+  "apellido": "Pérez",
+  "telefono": "1234HOLA",
+  "direccion": "Calle Falsa 122334"
+}
+
+###
+DELETE http://localhost:3000/api/doctores/3

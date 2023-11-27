@@ -1,0 +1,39 @@
+<h1 class="display-6">Detalle de la mascota</h1>
+
+<!-- <h2>Cirugias Mascota</h2>
+ Tabla de cirugías 
+<table class="table table-success table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">Fecha</th>
+      <th scope="col">Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cirugia of mascota.cirugias">
+      <td>{{ cirugia.fecha }}</td>
+      <td>{{ cirugia.descripcion }}</td>
+    </tr>
+  </tbody>
+</table>
+<br> -->
+<h2>Historial de Citas de la Mascota {{mascota.nombre}} </h2>
+<!-- Tabla de tratamientos -->
+<table class="table table-success table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">ID Cita</th>
+      <th scope="col">ID Servicio</th>
+      <th scope="col">Hora</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cita of mascota.citas">
+      <td>{{ cita.id_cita }}</td>
+      <td>{{ cita.Servicio_id_servicio }}</td>
+
+      <td>{{ cita.hora }}</td>
+
+    </tr>
+  </tbody>
+</table>

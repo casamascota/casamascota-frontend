@@ -1,0 +1,31 @@
+<app-navbar-administrador></app-navbar-administrador>
+<h1 class="display-4 mb-4" style="text-align: center;">Casa de la Mascota<span class="text-primary"> Lista mascotas</span></h1>
+
+<div class="table-container">
+<table class="mascota-table">
+   <thead>
+     <tr>
+       <th>ID Mascota</th>
+       <th>Nombre</th>
+       <th>Raza</th>
+       <th>Edad</th>
+       <th>Género</th>
+       <th>Fecha de Nacimiento</th>
+       <th>Peso</th>
+       <th>Owner ID</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let mascota of mascotasList" (click)="abrirDetalleMascota(mascota)">
+       <td>{{ mascota.id_mascota }}</td>
+       <td>{{ mascota.nombre }}</td>
+       <td>{{ mascota.raza }}</td>
+       <td>{{ mascota.edad }}</td>
+       <td>{{ mascota.genero }}</td>
+       <td>{{ mascota.fecha_nacimiento }}</td>
+       <td>{{ mascota.peso }}</td>
+       <td>{{ mascota.Owner_id_owner }}</td>
+     </tr>
+   </tbody>
+ </table>
+</div>

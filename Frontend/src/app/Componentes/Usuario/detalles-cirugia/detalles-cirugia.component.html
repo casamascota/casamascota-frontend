@@ -1,0 +1,61 @@
+<h1 class="display-6">Detalle de la cirugía</h1>
+
+<h2>Doctor</h2>
+<table class="table table-success table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Número de teléfono</th>
+      <th scope="col">Dirección</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ cirugia.doctor.nombre }}</td>
+      <td>{{ cirugia.doctor.apellido }}</td>
+      <td>{{ cirugia.doctor.numero_tel }}</td>
+      <td>{{ cirugia.doctor.direccion }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Enfermero</h2>
+<table class="table table-success table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Número de teléfono</th>
+      <th scope="col">Dirección</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ cirugia.enfermero.nombre }}</td>
+      <td>{{ cirugia.enfermero.apellidos }}</td>
+      <td>{{ cirugia.enfermero.numero_tel }}</td>
+      <td>{{ cirugia.enfermero.direccion }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Diagnóstico</h2>
+<table class="table table-success table-striped-columns">
+  <thead>
+    <tr>
+      <th scope="col">ID Diagnóstico</th>
+      <th scope="col">Diagnóstico</th>
+      <th scope="col">Tratamiento requerido</th>
+      <th scope="col">ID Revisión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ cirugia.diagnostico.id_diagnostico }}</td>
+      <td>{{ cirugia.diagnostico.diagnostico }}</td>
+      <td>{{ cirugia.diagnostico.trat_requerido }}</td>
+      <td>{{ cirugia.diagnostico.id_revision }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+.body {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    height: 100%;
+  }
+  
+  .center {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .ancho {
+    width: 80%;
+  }

@@ -1,0 +1,207 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-black: (
+    50 : #e9e9e9,
+    100 : #c7c7c7,
+    200 : #a2a2a2,
+    300 : #7d7d7d,
+    400 : #616161,
+    500 : #454545,
+    600 : #3e3e3e,
+    700 : #363636,
+    800 : #2e2e2e,
+    900 : #1f1f1f,
+    A100 : #f07a7a,
+    A200 : #eb4c4c,
+    A400 : #ff0505,
+    A700 : #eb0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-highorange: (
+    50 : #ffece0,
+    100 : #ffcfb3,
+    200 : #ffb080,
+    300 : #ff904d,
+    400 : #ff7826,
+    500 : #ff6000,
+    600 : #ff5800,
+    700 : #ff4e00,
+    800 : #ff4400,
+    900 : #ff3300,
+    A100 : #ffffff,
+    A200 : #fff4f2,
+    A400 : #ffc8bf,
+    A700 : #ffb2a6,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mediumorange: (
+    50 : #fff4eb,
+    100 : #ffe4cd,
+    200 : #ffd2ac,
+    300 : #ffc08b,
+    400 : #ffb372,
+    500 : #ffa559,
+    600 : #ff9d51,
+    700 : #ff9348,
+    800 : #ff8a3e,
+    900 : #ff792e,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffe6da,
+    A700 : #ffd5c0,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-loworange: (
+    50 : #fffcf8,
+    100 : #fff8ee,
+    200 : #fff3e3,
+    300 : #ffeed8,
+    400 : #ffeacf,
+    500 : #ffe6c7,
+    600 : #ffe3c1,
+    700 : #ffdfba,
+    800 : #ffdbb3,
+    900 : #ffd5a6,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$casa-mascota-primary: mat.define-palette($md-black);
+$casa-mascota-accent: mat.define-palette($md-highorange);
+
+// The warn palette is optional (defaults to red).
+$casa-mascota-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$casa-mascota-theme: mat.define-light-theme((
+  color: (
+    primary: $casa-mascota-primary,
+    accent: $casa-mascota-accent,
+    warn: $casa-mascota-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($casa-mascota-theme);
+
+/*
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$casa-mascota-primary: mat.define-palette(mat.$indigo-palette);
+$casa-mascota-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$casa-mascota-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$casa-mascota-theme: mat.define-light-theme((
+  color: (
+    primary: $casa-mascota-primary,
+    accent: $casa-mascota-accent,
+    warn: $casa-mascota-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($casa-mascota-theme);
+
+*/

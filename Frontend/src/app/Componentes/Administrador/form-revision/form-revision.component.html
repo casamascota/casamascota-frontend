@@ -1,0 +1,28 @@
+<form [formGroup]="revisionForm" (ngSubmit)="onSubmit()">
+   <div>
+     <label for="fecha_revision">Fecha de Revisión:</label>
+     <input type="datetime-local" formControlName="fecha_revision" id="fecha_revision">
+   </div>
+   <div>
+     <label for="sistema_car">Sistema CAR:</label>
+     <input type="text" formControlName="sistema_car" id="sistema_car">
+   </div>
+   <div>
+     <label for="peso">Peso:</label>
+     <input type="number" formControlName="peso" id="peso">
+   </div>
+   <div>
+     <label for="sistema_nervioso">Sistema Nervioso:</label>
+     <input type="text" formControlName="sistema_nervioso" id="sistema_nervioso">
+   </div>
+   <div>
+     <label for="Cita_Agendada_id_cita">ID de Cita Agendada:</label>
+     <input type="number" formControlName="Cita_Agendada_id_cita" id="Cita_Agendada_id_cita">
+   </div>
+   <div>
+     <label for="Doctor_id_doctor">ID de Doctor:</label>
+     <input type="number" formControlName="Doctor_id_doctor" id="Doctor_id_doctor">
+   </div>
+   <button type="submit" [disabled]="!revisionForm.valid">Guardar</button>
+ </form>
+ 

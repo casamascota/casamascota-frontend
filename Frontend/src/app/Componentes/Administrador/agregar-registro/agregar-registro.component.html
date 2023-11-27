@@ -1,0 +1,178 @@
+<app-navbar-administrador></app-navbar-administrador>
+<div class="selector">
+  <mat-form-field>
+    <mat-label>Añadir nuevo</mat-label>
+    <select [(ngModel)] = "selectedForm" matNativeControl required>
+      <option value="doctor/admin">Doctor</option>
+      <option value="enfermero">Enfermero</option>
+      <option value="owner">Tutor</option>
+      <option value="estilista">Estilista</option>
+    </select>
+  </mat-form-field>
+</div>
+
+<div class="body">
+  <div class="center">
+    <ng-container [ngSwitch]="selectedForm">
+      <form *ngSwitchCase="'doctor/admin'" [formGroup]="formularioAdmDoc" (ngSubmit)="enviarFormularioAdmDoc()">
+        <div class="d-flex flex-column text-center mb-5">
+          <h1 class="display-4 m-0"><span class="text-primary">Agregar</span> Doctor</h1>
+        </div>
+
+        <mat-form-field class="ancho">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" formControlName="nombre" />
+          <div *ngIf="formularioAdmDoc.controls['nombre'].invalid && formularioAdmDoc.controls['nombre'].touched">
+            <div *ngIf="formularioAdmDoc.controls['nombre'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+        
+        <mat-form-field class="ancho">
+          <mat-label>Apellido:</mat-label>
+          <input matInput type="text" formControlName="apellido" />
+          <div *ngIf="formularioAdmDoc.controls['apellido'].invalid && formularioAdmDoc.controls['apellido'].touched">
+            <div *ngIf="formularioAdmDoc.controls['apellido'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Telefono:</mat-label>
+          <input matInput type="text" formControlName="numero_tel" maxlength="10" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+          <div *ngIf="formularioAdmDoc.controls['numero_tel'].invalid && formularioAdmDoc.controls['numero_tel'].touched">
+            <div *ngIf="formularioAdmDoc.controls['numero_tel'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>        
+      
+        <mat-form-field class="ancho">
+          <mat-label>Direccion:</mat-label>
+          <input matInput type="text" formControlName="direccion" />
+          <div *ngIf="formularioAdmDoc.controls['direccion'].invalid && formularioAdmDoc.controls['direccion'].touched">
+            <div *ngIf="formularioAdmDoc.controls['direccion'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+        <br>
+        <button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formularioAdmDoc.invalid">Guardar</button>
+      </form>
+
+      <form *ngSwitchCase="'enfermero'" [formGroup]="formularioEnfermero" (ngSubmit)="enviarFormularioEnfermero()">
+        <div class="d-flex flex-column text-center mb-5">
+          <h1 class="display-4 m-0"><span class="text-primary">Agregar</span> Enfermero</h1>
+        </div>
+
+        <mat-form-field class="ancho">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" formControlName="nombre" />
+          <div *ngIf="formularioEnfermero.controls['nombre'].invalid && formularioEnfermero.controls['nombre'].touched">
+            <div *ngIf="formularioEnfermero.controls['nombre'].errors?.['required']">El nombre es requerido.</div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Apellido:</mat-label>
+          <input matInput type="text" formControlName="apellido" />
+          <div *ngIf="formularioEnfermero.controls['apellido'].invalid && formularioEnfermero.controls['apellido'].touched">
+            <div *ngIf="formularioEnfermero.controls['apellido'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Telefono:</mat-label>
+          <input matInput type="text" formControlName="numero_tel" maxlength="10" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+          <div *ngIf="formularioEnfermero.controls['numero_tel'].invalid && formularioEnfermero.controls['numero_tel'].touched">
+            <div *ngIf="formularioEnfermero.controls['numero_tel'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+      
+        <mat-form-field class="ancho">
+          <mat-label>Direccion:</mat-label>
+          <input matInput type="text" formControlName="direccion" />
+          <div *ngIf="formularioEnfermero.controls['direccion'].invalid && formularioEnfermero.controls['direccion'].touched">
+            <div *ngIf="formularioEnfermero.controls['direccion'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+        <br>
+        <button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formularioEnfermero.invalid">Guardar</button>
+      </form>
+
+      <form *ngSwitchCase="'owner'" [formGroup]="formularioOwner" (ngSubmit)="enviarFormularioOwner()">
+        <div class="d-flex flex-column text-center mb-5">
+          <h1 class="display-4 m-0"><span class="text-primary">Agregar</span> Owner</h1>
+        </div>
+
+        <mat-form-field class="ancho">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" formControlName="nombre" />
+          <div *ngIf="formularioOwner.controls['nombre'].invalid && formularioOwner.controls['nombre'].touched">
+            <div *ngIf="formularioOwner.controls['nombre'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Apellido:</mat-label>
+          <input matInput type="text" formControlName="apellido" />
+          <div *ngIf="formularioOwner.controls['apellido'].invalid && formularioOwner.controls['apellido'].touched">
+            <div *ngIf="formularioOwner.controls['apellido'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+      
+        <mat-form-field class="ancho">
+          <mat-label>Telefono:</mat-label>
+          <input matInput type="text" formControlName="numero_tel" maxlength="10" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+          <div *ngIf="formularioOwner.controls['numero_tel'].invalid && formularioOwner.controls['numero_tel'].touched">
+            <div *ngIf="formularioOwner.controls['numero_tel'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+      
+        <mat-form-field class="ancho">
+          <mat-label>Direccion:</mat-label>
+          <input matInput type="text" formControlName="direccion" />
+          <div *ngIf="formularioOwner.controls['direccion'].invalid && formularioOwner.controls['direccion'].touched">
+            <div *ngIf="formularioOwner.controls['direccion'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Correo:</mat-label>
+          <input matInput type="text" formControlName="correo" />
+          <div *ngIf="formularioOwner.controls['correo'].invalid && formularioOwner.controls['correo'].touched">
+            <div *ngIf="formularioOwner.controls['correo'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+        <br>
+        <button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formularioOwner.invalid">Guardar</button>
+      </form>
+
+      <form *ngSwitchCase="'estilista'" [formGroup]="formularioEstilista" (ngSubmit)="enviarFormularioEstilista()">
+        <div class="d-flex flex-column text-center mb-5">
+          <h1 class="display-4 m-0"><span class="text-primary">Agregar</span> Estilista</h1>
+        </div>
+
+        <mat-form-field class="ancho">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" formControlName="nombre" />
+          <div *ngIf="formularioEstilista.controls['nombre'].invalid && formularioEstilista.controls['nombre'].touched">
+            <div *ngIf="formularioEstilista.controls['nombre'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="ancho">
+          <mat-label>Apellido:</mat-label>
+          <input matInput type="text" formControlName="apellido" />
+          <div *ngIf="formularioEstilista.controls['apellido'].invalid && formularioEstilista.controls['apellido'].touched">
+            <div *ngIf="formularioEstilista.controls['apellido'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+      
+        <mat-form-field class="ancho">
+          <mat-label>Telefono:</mat-label>
+          <input matInput type="text" formControlName="numero_tel" maxlength="10" autocomplete="off" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" min="1" />
+          <div *ngIf="formularioEstilista.controls['numero_tel'].invalid && formularioEstilista.controls['numero_tel'].touched">
+            <div *ngIf="formularioEstilista.controls['numero_tel'].errors?.['required']"></div>
+          </div>
+        </mat-form-field>
+        <br>
+        <button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formularioEstilista.invalid">Guardar</button>
+      </form>
+    </ng-container>
+  </div>
+</div>

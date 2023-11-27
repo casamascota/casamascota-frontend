@@ -1,0 +1,68 @@
+<app-navbar-doctor></app-navbar-doctor>
+<div class="body">
+    <div class="center">
+      
+      <h1 class="display-4 mb-4" style="text-align: center;">Casa de la Mascota<span class="text-primary"> Lista tratamientos</span></h1>
+      <div class="selector" >  
+        <mat-form-field>
+          <mat-label>Filtrar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+        </mat-form-field>
+        <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10]" [showFirstLastButtons]="true" [length]="citasList.length" (page)="applyPaginator($event)" style=" margin-left: 3rem;">
+        </mat-paginator>
+      
+        <button mat-fab extended color="primary" routerLink="/citas" style=" margin-left: 3rem;">
+          <mat-icon>add</mat-icon>
+          Agregar 
+        </button>
+      </div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id_cita">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id_cita}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> FECHA</th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="hora">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> HORA </th>
+          <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Mascota_id_mascota">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> MASCOTA ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.Mascota_id_mascota}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Servicio_id_servicio">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> SERVICIO ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.Servicio_id_servicio}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #ff6000;"> ACCIONES </th>
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <a class="pointer" (click)="modificarCitas(element.id_cirugia)" style="color: blue;" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </a>
+  
+            <a class="pointer" (click)="eliminarCitas(element.id_cirugia)" style="color: red;" matTooltip="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>  
+      
+    </div>
+  </div>
+    
+  
+  
+  

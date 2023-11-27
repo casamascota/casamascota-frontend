@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+  }
+
+th {
+    width: 15%;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.selector {
+    display: flex;
+    
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    
+}
+
+.center {
+    width: 100%;
+    max-width: 80%;
+}
+
+/*Colocar boton a la derecha*/
+.agregar {
+    margin-left: 80%;
+}

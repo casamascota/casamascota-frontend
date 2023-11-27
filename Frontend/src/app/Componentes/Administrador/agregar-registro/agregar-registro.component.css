@@ -1,0 +1,21 @@
+.selector {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 5rem;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    height: 90%;
+}
+
+.center {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.ancho {
+    width: 80%;
+}

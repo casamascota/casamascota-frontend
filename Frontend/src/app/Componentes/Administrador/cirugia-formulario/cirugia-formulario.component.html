@@ -1,0 +1,42 @@
+<app-navbar-administrador></app-navbar-administrador>
+<div class="body">
+  <div class="center">
+    <h1 class="display-4 mb-4" style="text-align: center;">Agregar<span class="text-primary"> Cirugia</span></h1>
+
+    <form [formGroup]="formCirugia" (ngSubmit)="onSubmit()">
+      <mat-form-field style="width: 45%; margin-right: 1em;">
+        <mat-label>Fecha de la cirugia:</mat-label>
+        <input matInput type="date" formControlName="fecha" />
+        <div *ngIf="formCirugia.controls['fecha'].invalid && formCirugia.controls['fecha'].touched">
+          <div *ngIf="formCirugia.controls['fecha'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <mat-checkbox formControlName="cirugiahecha" id="cirugiahecha" name="cirugiahecha">
+        Cirugia realizada?
+      </mat-checkbox>
+      <mat-form-field class="ancho">
+        <mat-label>ID del doctor:</mat-label>
+        <input matInput type="number" formControlName="Doctor_id_doctor" />
+        <div *ngIf="formCirugia.controls['Doctor_id_doctor'].invalid && formCirugia.controls['Doctor_id_doctor'].touched">
+          <div *ngIf="formCirugia.controls['Doctor_id_doctor'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>ID del Enfermero:</mat-label>
+        <input matInput type="number" formControlName="Enfermero_id_enfermero" />
+        <div *ngIf="formCirugia.controls['Enfermero_id_enfermero'].invalid && formCirugia.controls['Enfermero_id_enfermero'].touched">
+          <div *ngIf="formCirugia.controls['Enfermero_id_enfermero'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <mat-form-field class="ancho">
+        <mat-label>ID del Dueño:</mat-label>
+        <input matInput type="number" formControlName="Diagnostico_id_diagnostico" />
+        <div *ngIf="formCirugia.controls['Diagnostico_id_diagnostico'].invalid && formCirugia.controls['Diagnostico_id_diagnostico'].touched">
+          <div *ngIf="formCirugia.controls['Diagnostico_id_diagnostico'].errors?.['required']"></div>
+        </div>
+      </mat-form-field>
+      <br>
+      <button button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formCirugia.invalid" (click)="guardarCirugia()">Guardar</button>
+    </form>
+  </div>
+</div>
