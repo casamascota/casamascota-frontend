@@ -1,0 +1,18 @@
+.map-container {
+    display: flex;
+  }
+  
+  .map-controls {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Asegúrate de ajustar el tamaño del mapa para que no ocupe toda la pantalla */
+  #map {
+    height: 500px;
+    flex-grow: 1;
+  }
+  
