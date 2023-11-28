@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
     providedIn: 'root'
 })
 export class CirugiasService{
-    URL_BASE = 'http://localhost:3000/api/v1/';
+    URL_BASE = 'http://localhost:8080/api/v1/';
     constructor(private httpClient: HttpClient) {}
 
     async getCirugias(): Promise<Cirugia_Admin[]> {
