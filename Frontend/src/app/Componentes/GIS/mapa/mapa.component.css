@@ -28,9 +28,3 @@
     box-sizing: border-box;
   }
   
-  /* Asegúrate de ajustar el tamaño del mapa para que no ocupe toda la pantalla */
-  #map {
-    height: 100%;
-    flex-grow: 1;
-  }
-  

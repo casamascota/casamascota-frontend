@@ -9,16 +9,16 @@ import { Observable } from "rxjs";
     providedIn: 'root'
   })
   export class MapaService {
-    private apiUrl = 'http://localhost:3000/api/v1';
+    private apiUrl = 'http://localhost:8080/api/v1';
   
     constructor(private http: HttpClient) { }
   
     obtenerVeterinarias(): Observable<Veterinaria[]> {
-      return this.http.get<Veterinaria[]>(`${this.apiUrl}/veterinarias`);
+      return this.http.get<Veterinaria[]>(`${this.apiUrl}/veterinarias/`);
     }
   
     obtenerRefugios(): Observable<Refugio[]> {
-      return this.http.get<Refugio[]>(`${this.apiUrl}/refugios`);
+      return this.http.get<Refugio[]>(`${this.apiUrl}/refugios/`);
     }
   
     obtenerAreas(): Observable<Area[]> {
