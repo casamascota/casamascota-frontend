@@ -29,7 +29,8 @@ export class MapaComponent implements OnInit, AfterViewInit{
 
   private inicializarMapa(): void {
     L.Icon.Default.mergeOptions({
-      shadowUrl: 'assets/marker-shadow.png'
+      shadowUrl: 'assets/marker-shadow.png',
+      className: 'transparent-shadow'
     });
 
     if (this.mapContainer) {
@@ -101,7 +102,7 @@ export class MapaComponent implements OnInit, AfterViewInit{
   mostrarTodo(): void {
     this.map.addLayer(this.capasVeterinarias);
     this.map.addLayer(this.capasRefugios);
-    this.map.addLayer(this.capasAreas);
+    //this.map.addLayer(this.capasAreas);
   }
 
   mostrarVeterinarias(): void {
