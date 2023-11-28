@@ -1,0 +1,36 @@
+.map-container {
+    display: flex;
+    height: 100%;
+  }
+  
+  .map-controls {
+    display: flex;
+    flex-direction: column; 
+    flex: 0 0 auto;
+    margin-right: 10px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    align-items: center; 
+    justify-content: start; 
+    border-radius: 5px
+  }
+  .boton {
+    margin: 5px;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 10px;
+    background-color: #ff6000;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer; 
+    text-align: center; 
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Asegúrate de ajustar el tamaño del mapa para que no ocupe toda la pantalla */
+  #map {
+    height: 100%;
+    flex-grow: 1;
+  }
+  
