@@ -11,7 +11,7 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
 export class MascotaFormularioComponent {
   formMascota: FormGroup;
   genero: any = ['Macho', 'Hembra'];
-  URL_BASE = 'http://localhost:3000/api/';
+  URL_BASE = 'http://localhost:8080/api/v1/';
   maxFechaNacimiento: string;
   // id_mascota: number = 0;
   // email: string = "";
@@ -43,7 +43,7 @@ export class MascotaFormularioComponent {
 
   guardarMascota() {
     if (this.formMascota.valid) {
-      const url = this.URL_BASE + 'mascotas';
+      const url = this.URL_BASE + 'mascota';
       const formData = this.formMascota.value;
 
       this.httpClient.post(url, formData).subscribe(

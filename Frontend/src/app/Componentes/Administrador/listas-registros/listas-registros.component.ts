@@ -17,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ListasRegistrosComponent implements OnInit {
   formularioAdmDoc: FormGroup;
-  URL_BASE = 'http://localhost:3000/api/';
+  URL_BASE = 'http://localhost:8080/api/v1/';
   listDoctores: Doctor_Admin[] = [];
 
   displayedColumns: string[] = ['id_doctor', 'nombre', 'apellido', 'numero_tel', 'direccion', 'acciones'];

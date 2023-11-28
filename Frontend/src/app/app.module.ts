@@ -83,6 +83,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { LoginButtonComponent } from './Componentes/Navbar/login-button/login-button.component';
 import { LogoutButtonComponent } from './Componentes/Navbar/logout-button/logout-button.component';
 import { UserProfileComponent } from './Componentes/Navbar/user-profile/user-profile.component';
+import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona-component/crear-persona-component.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +131,7 @@ import { UserProfileComponent } from './Componentes/Navbar/user-profile/user-pro
     LoginButtonComponent,
     LogoutButtonComponent,
     UserProfileComponent,
+    CrearPersonaComponent,
 
   ],
   imports: [

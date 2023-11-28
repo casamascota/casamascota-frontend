@@ -1,0 +1,42 @@
+<app-navbar-administrador></app-navbar-administrador>
+<div class="container ">
+      <form class="d-flex flex-column" [formGroup]="formularioPersona" (ngSubmit)="enviarFormularioPersona()">
+        <mat-form-field class="ancho">
+          <mat-label>Nombre:</mat-label>
+          <input matInput type="text" formControlName="nombre" />
+          <mat-error *ngIf="formularioPersona.get('nombre')?.invalid && formularioPersona.get('nombre')?.touched">
+            Nombre es requerido.
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ancho">
+          <mat-label>Apellido:</mat-label>
+          <input matInput type="text" formControlName="apellido" />
+          <mat-error *ngIf="formularioPersona.get('apellido')?.invalid && formularioPersona.get('apellido')?.touched">
+            Apellido es requerido.
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ancho">
+          <mat-label>Teléfono:</mat-label>
+          <input matInput type="text" formControlName="numero_tel" />
+          <mat-error *ngIf="formularioPersona.get('numero_tel')?.invalid && formularioPersona.get('numero_tel')?.touched">
+            Teléfono es requerido.
+          </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="ancho">
+          <mat-label>Dirección:</mat-label>
+          <input matInput type="text" formControlName="direccion" />
+          <mat-error *ngIf="formularioPersona.get('direccion')?.invalid && formularioPersona.get('direccion')?.touched">
+            Dirección es requerida.
+          </mat-error>
+        </mat-form-field>
+    
+        <button type="submit" mat-raised-button color="primary" [disabled]="formularioPersona.invalid">
+          Guardar Persona
+        </button>
+      </form>
+      <button mat-button (click)="regresar()">Regresar</button>
+    </div>
+    

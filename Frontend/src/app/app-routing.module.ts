@@ -42,6 +42,7 @@ import { CirugiaFormularioDoctorComponent } from './Componentes/Administrador/ci
 import { AgendaCitaDoctorComponent } from './Componentes/Administrador/agenda-cita-doctor/agenda-cita-doctor.component';
 //Mapa
 import { MapaComponent } from './Componentes/GIS/mapa/mapa.component';
+import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona-component/crear-persona-component.component';
 
 /*
 // Componentes EF
@@ -81,7 +82,7 @@ const routes: Routes = [
   { path: "app-navbar-administrador" , component: NavbarAdministradorComponent },
   { path: "inicio-administrador" , component: InicioAdminComponent },
   { path: "app-mapa" , component: MapaComponent },
-  
+  { path: "crear-persona" , component: CrearPersonaComponent },
 ];
 
 
