@@ -24,7 +24,11 @@
                     <p class="m-0">+012 345 6789</p>
                 </div>
                 <div class="d-inline-flex flex-column text-center pl-3">
-                    <button class="btn btn-lg btn-primary btn-block border-0 text-black">Login</button>
+                    <app-user-profile *ngIf="auth.isAuthenticated$ | async"></app-user-profile>
+                    <!-- Botón de Login -->
+                    <app-login-button *ngIf="!(auth.isAuthenticated$ | async)"></app-login-button>
+                    <!-- Botón de Logout -->
+                    <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
                 </div>
             </div>
         </div>
@@ -47,6 +51,8 @@
                   <a href="/educativo" class="nav-item nav-link">Edúcate</a>     
                        
                   <a href="/app-mapa" class="nav-item nav-link">Mapa</a>      
+                  
+ 
             </div>
         </div>
     </nav>

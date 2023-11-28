@@ -78,6 +78,11 @@ import { NavbarAdministradorComponent } from './Componentes/Navbar/navbar-admini
 import { InicioAdminComponent } from './Componentes/Administrador/inicio-admin/inicio-admin.component';
 import { MapaComponent } from './Componentes/GIS/mapa/mapa.component';
 
+//----Oauth0
+import { AuthModule } from '@auth0/auth0-angular';
+import { LoginButtonComponent } from './Componentes/Navbar/login-button/login-button.component';
+import { LogoutButtonComponent } from './Componentes/Navbar/logout-button/logout-button.component';
+import { UserProfileComponent } from './Componentes/Navbar/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +127,9 @@ import { MapaComponent } from './Componentes/GIS/mapa/mapa.component';
     NavbarAdministradorComponent,
     InicioAdminComponent,
     MapaComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent,
+    UserProfileComponent,
 
   ],
   imports: [
@@ -147,7 +155,15 @@ import { MapaComponent } from './Componentes/GIS/mapa/mapa.component';
     MatGridListModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    //--Oauth0
+    AuthModule.forRoot({
+      domain: 'carlosnina.us.auth0.com',
+      clientId: 'oAEHBetEKR0jsnEhTHgNzleLftMCqV1w',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
   providers: [],
 
