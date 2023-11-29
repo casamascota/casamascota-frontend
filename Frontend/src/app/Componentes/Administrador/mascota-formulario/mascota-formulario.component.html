@@ -2,7 +2,7 @@
 <div class="body">
   <div class="center">
     <h1 class="display-4 mb-4" style="text-align: center;">Agregar<span class="text-primary"> Mascota</span></h1>
-    <form [formGroup]="formMascota" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formMascota" (ngSubmit)="guardarMascota()">
       <mat-form-field class="ancho">
         <mat-label>Nombre:</mat-label>
         <input matInput type="text" formControlName="nombre" />
@@ -75,13 +75,11 @@
       <div *ngIf="tieneDueno">
         <mat-form-field class="ancho">
           <mat-label>Dueño:</mat-label>
-          <select matNativeControl formControlName="Owner_id_owner">
-            <option value=""></option>
-            <option *ngFor="let usuario of usuarios" [value]="usuario.id_usuario">
-              {{ usuario.username }} - {{ usuario.persona.nombre }}
-            </option>
-          </select>
-          <!-- Agrega validación y errores si es necesario -->
+        <mat-select formControlName="id_usuario">
+          <mat-option *ngFor="let owner of owners" [value]="owner.id_usuario">
+            {{ owner.persona.nombre }} {{ owner.persona.apellido }}
+          </mat-option>
+        </mat-select>
         </mat-form-field>
       </div>
       <!-- <button button type="submit" class="ancho" mat-raised-button color="primary" [disabled]="formMascota.invalid" (click)="guardarMascota()">Guardar</button> -->

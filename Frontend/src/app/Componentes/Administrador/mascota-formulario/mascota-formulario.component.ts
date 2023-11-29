@@ -9,8 +9,10 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
   styleUrls: ['./mascota-formulario.component.css'],
 })
 export class MascotaFormularioComponent {
+  owners: any[] = [];
+  router: any;
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.cargarOwner();
 
   }
   usuarios: any[] = [];
@@ -32,6 +34,7 @@ export class MascotaFormularioComponent {
     this.maxFechaNacimiento = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     this.formMascota = this.formBuilder.group({
+      id_usuario: [''] ,
       nombre: ['', Validators.required],
       raza: ['', Validators.required],
       genero: ['', Validators.required],
@@ -41,45 +44,41 @@ export class MascotaFormularioComponent {
       isAdopted: [false],  // Cambiado a false por defecto
       Owner_id_owner: ['']  // Hacemos este campo opcional
     });
+    this.cargarOwner();
   }
-  cargarUsuarios() {
-    const urlUsuarios = this.URL_BASE + 'usuarios/';
-    this.httpClient.get(urlUsuarios).subscribe(
+  cargarOwner() {
+    const url = this.URL_BASE + 'usuarios/';
+    this.httpClient.get(url).subscribe(
       (data: any) => {
-        this.usuarios = data;
+        this.owners = data.filter((usuario: any) => usuario.rol === 'Owner');
       },
-      err => console.log(err)
+      (err: any) => console.log(err)
     );
   }
 
   onTieneDuenoChange() {
     this.tieneDueno = !this.tieneDueno;
     if (!this.tieneDueno) {
-      this.formMascota.get('Owner_id_owner')?.setValue(null);
+      this.formMascota.get('id_usuario')?.setValue(null);
     }
   }
-  onSubmit() {
-    console.log(this.formMascota.value);
-    this.guardarMascota();
-  }
-
+  
   guardarMascota() {
     if (this.formMascota.valid) {
       const formData = this.formMascota.value;
-// Establecer un dueño por defecto (ID 1) si no está marcado como adoptado
-const ownerId = formData.isAdopted ? formData.Owner_id_owner : '1';
-
-const mascotaData = {
-  nombre: formData.nombre,
-  raza: formData.raza,
-  genero: formData.genero,
-  fecha_nacimiento: formData.fecha_nacimiento,
-  peso: formData.peso,
-  especie: formData.especie,
-  usuario: { id_usuario: ownerId },
-  enadopcion: !formData.isAdopted
-};
+      // Asignar el ID del dueño si la mascota está adoptada, de lo contrario null
+      const ownerId = formData.isAdopted && formData.id_usuario ? formData.id_usuario : null;
   
+      const mascotaData = {
+        nombre: formData.nombre,
+        raza: formData.raza,
+        genero: formData.genero,
+        fecha_nacimiento: formData.fecha_nacimiento,
+        peso: formData.peso,
+        especie: formData.especie,
+        usuario: { id_usuario: ownerId },
+        enadopcion: !formData.isAdopted
+      };
       const url = this.URL_BASE + 'mascota/';
       this.httpClient.post(url, mascotaData).subscribe(
         res => {

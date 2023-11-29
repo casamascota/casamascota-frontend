@@ -10,7 +10,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TratamientoFormularioDoctorComponent {
   formTratamiento: FormGroup;
   URL_BASE = 'http://localhost:3000/api/';
+  minDate: string; // Variable para almacenar la fecha mínima
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder ) { 
+    const today = new Date();
+  // Estableciendo la fecha mínima como la fecha actual
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1; // Recordar que getMonth() comienza desde 0
+  const day = today.getDate();
+  this.minDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`; 
     this.formTratamiento = this.formBuilder.group({
       fecha_inicio: ['',Validators.required],
       fecha_final: ['',Validators.required],

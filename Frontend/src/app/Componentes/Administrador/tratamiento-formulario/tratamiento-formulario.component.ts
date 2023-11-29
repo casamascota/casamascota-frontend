@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,10 +7,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './tratamiento-formulario.component.html',
   styleUrls: ['./tratamiento-formulario.component.css']
 })
-export class TratamientoFormularioComponent {
+export class TratamientoFormularioComponent implements OnInit{
   formTratamiento: FormGroup;
-  URL_BASE = 'http://localhost:3000/api/';
+  URL_BASE = 'http://localhost:8080/api/v1/';
+  owners: any[] = [];
+  minDate: string; // Variable para almacenar la fecha mínima
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder ) { 
+    const today = new Date();
+  // Estableciendo la fecha mínima como la fecha actual
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1; // Recordar que getMonth() comienza desde 0
+  const day = today.getDate();
+  this.minDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`; 
     this.formTratamiento = this.formBuilder.group({
       fecha_inicio: ['',Validators.required],
       fecha_final: ['',Validators.required],
@@ -22,6 +30,10 @@ export class TratamientoFormularioComponent {
   onSubmit() {
     console.log(this.formTratamiento.value);
     this.guardarTratamiento();
+  }
+
+  ngOnInit(): void {
+    this.cargarOwner();
   }
 
   guardarTratamiento() {
@@ -51,6 +63,15 @@ export class TratamientoFormularioComponent {
       err => {
         console.log(err);
       }
+    );
+  }
+  cargarOwner() {
+    const url = this.URL_BASE + 'usuarios/';
+    this.httpClient.get(url).subscribe(
+      (data: any) => {
+        this.owners = data.filter((usuario: any) => usuario.rol === 'Owner');
+      },
+      (err: any) => console.log(err)
     );
   }
 
