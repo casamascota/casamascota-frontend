@@ -34,6 +34,7 @@ export class MascotaFormularioComponent {
     this.maxFechaNacimiento = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     this.formMascota = this.formBuilder.group({
+      id_usuario: [''] ,
       nombre: ['', Validators.required],
       raza: ['', Validators.required],
       genero: ['', Validators.required],
@@ -43,6 +44,7 @@ export class MascotaFormularioComponent {
       isAdopted: [false],  // Cambiado a false por defecto
       Owner_id_owner: ['']  // Hacemos este campo opcional
     });
+    this.cargarOwner();
   }
   cargarOwner() {
     const url = this.URL_BASE + 'usuarios/';
@@ -57,19 +59,15 @@ export class MascotaFormularioComponent {
   onTieneDuenoChange() {
     this.tieneDueno = !this.tieneDueno;
     if (!this.tieneDueno) {
-      this.formMascota.get('Owner_id_owner')?.setValue(null);
+      this.formMascota.get('id_usuario')?.setValue(null);
     }
   }
-  onSubmit() {
-    console.log(this.formMascota.value);
-    this.guardarMascota();
-  }
-
+  
   guardarMascota() {
     if (this.formMascota.valid) {
       const formData = this.formMascota.value;
       // Asignar el ID del dueño si la mascota está adoptada, de lo contrario null
-      const ownerId = formData.isAdopted && formData.Owner_id_owner ? formData.Owner_id_owner : null;
+      const ownerId = formData.isAdopted && formData.id_usuario ? formData.id_usuario : null;
   
       const mascotaData = {
         nombre: formData.nombre,
