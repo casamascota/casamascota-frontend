@@ -24,11 +24,11 @@
                     <p class="m-0">+012 345 6789</p>
                 </div>
                 <div class="d-inline-flex flex-column text-center pl-3">
-                    <app-user-profile *ngIf="auth.isAuthenticated$ | async"></app-user-profile>
+                    <app-user-profile *ngIf="auth0.isAuthenticated$ | async"></app-user-profile>
                     <!-- Botón de Login -->
-                    <app-login-button *ngIf="!(auth.isAuthenticated$ | async)"></app-login-button>
+                    <app-login-button *ngIf="!(auth0.isAuthenticated$ | async)"></app-login-button>
                     <!-- Botón de Logout -->
-                    <app-logout-button *ngIf="auth.isAuthenticated$ | async"></app-logout-button>
+                    <app-logout-button *ngIf="auth0.isAuthenticated$ | async"></app-logout-button>
                 </div>
             </div>
         </div>
@@ -45,14 +45,47 @@
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+
+
+        <div class="collapse navbar-collapse px-3" id="navbarCollapse">
             <div class="navbar-nav mr-auto py-0">
-                  <a href="/" class="nav-item nav-link">Inicio</a>
-                  <a href="/educativo" class="nav-item nav-link">Edúcate</a>     
-                       
-                  <a href="/app-mapa" class="nav-item nav-link">Mapa</a>      
-                  
- 
+                <a href="/" class="nav-item nav-link">Inicio</a>
+                <!-- Links visibles para todos los usuarios -->
+                <a href="/educativo" class="nav-item nav-link" >Edúcate</a>
+                <a href="/app-mapa" class="nav-item nav-link" >Mapa</a>
+                <a href="/adopciones" class="nav-item nav-link">Adopta un<br> nuevo amigo</a>
+                <a href="/agenda-cita-doctor" class="nav-item nav-link">Reserva <br> una cita</a>
+                <!-- Links específicos para roles -->
+
+                <div *ngIf="auth0.isAuthenticated$ | async">
+                <!-- Ejemplo para el rol 'doctor' -->
+                    <ng-container *ngIf="roles | async as userRoles">
+                        <a href="/citas-agendadas-doctor" class="nav-item nav-link" *ngIf="userRoles.includes('doctor')">Citas agendadas</a>
+                       <!-- Solo lo ven los enfermeros, doctores y admin -->
+                        <div class="nav-item dropdown" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="/cirugia-formulario-doctor" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar cirugia</a>
+                                <a href="/tratamiento-formulario" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar tratamiento</a>
+                                <a href="/mascota-formulario" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar mascota</a>
+                                <a href="/agregar_registro" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar persona</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <!-- Solo lo ven los enfermeros, doctores y admin -->
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Registros</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="/registro" class="dropdown-item" *ngIf="userRoles.includes('admin')">Doctores</a>
+                                <a href="/lista-cirugia" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Cirugias</a>
+                                <a href="/lista-tratamientos" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Tratamientos</a>
+                                <a href="/citas-agendadas" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Citas agendadas</a>
+                            </div>
+                        </div>
+                        
+
+                    </ng-container>
+
+                </div>
             </div>
         </div>
     </nav>
