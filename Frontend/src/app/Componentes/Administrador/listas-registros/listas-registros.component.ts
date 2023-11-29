@@ -19,11 +19,13 @@ export class ListasRegistrosComponent implements OnInit {
   formularioAdmDoc: FormGroup;
   URL_BASE = 'http://localhost:8080/api/v1/';
   listDoctores: Doctor_Admin[] = [];
+  doctors: any[] = [];
 
-  displayedColumns: string[] = ['id_doctor', 'nombre', 'apellido', 'numero_tel', 'direccion', 'acciones'];
+  displayedColumns: string[] = ['id_doctor', 'nombre', 'apellido', 'numero_tel', 'direccion', 'especialidad', 'acciones'];
   dataSource!: MatTableDataSource<Doctor_Admin>;
   pageSize = 10; // Define el número de elementos por página
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  httpClient: any;
 
   constructor(private formBuilder: FormBuilder, private _doctoresServices: DoctoresService, private http: HttpClient, private modalService: ModalService) {
     this.formularioAdmDoc = this.formBuilder.group({
@@ -32,6 +34,7 @@ export class ListasRegistrosComponent implements OnInit {
       apellido: [null, Validators.required],
       numero_tel: [null, Validators.required],
       direccion: [null, Validators.required],
+      especialidad: [null, Validators.required],
     });
     this.cargarDoctores();
   }
@@ -41,12 +44,13 @@ export class ListasRegistrosComponent implements OnInit {
 
   async cargarDoctores() {
     try {
-      this.listDoctores = await this._doctoresServices.getDoctores();
-      console.log("Lista: ", this.listDoctores);
-      this.dataSource = new MatTableDataSource<Doctor_Admin>(this.listDoctores);
-
-      // Asigna el paginador al dataSource
-      this.dataSource.paginator = this.paginator;
+      const url = this.URL_BASE + 'usuarios/';
+      this.httpClient.get(url).subscribe(
+        (data: any) => {
+          this.doctors = data.filter((usuario: any) => usuario.rol === 'Doctor');
+        },
+        (err: any) => console.log(err)
+      );
     } catch (error) {
       console.log(error);
     }

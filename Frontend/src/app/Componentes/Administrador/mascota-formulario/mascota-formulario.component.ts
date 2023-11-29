@@ -9,8 +9,10 @@ import { MAT_DATE_FORMATS } from '@angular/material/core';
   styleUrls: ['./mascota-formulario.component.css'],
 })
 export class MascotaFormularioComponent {
+  owners: any[] = [];
+  router: any;
   ngOnInit(): void {
-    this.cargarUsuarios();
+    this.cargarOwner();
 
   }
   usuarios: any[] = [];
@@ -42,13 +44,13 @@ export class MascotaFormularioComponent {
       Owner_id_owner: ['']  // Hacemos este campo opcional
     });
   }
-  cargarUsuarios() {
-    const urlUsuarios = this.URL_BASE + 'usuarios/';
-    this.httpClient.get(urlUsuarios).subscribe(
+  cargarOwner() {
+    const url = this.URL_BASE + 'usuarios/';
+    this.httpClient.get(url).subscribe(
       (data: any) => {
-        this.usuarios = data;
+        this.owners = data.filter((usuario: any) => usuario.rol === 'Owner');
       },
-      err => console.log(err)
+      (err: any) => console.log(err)
     );
   }
 
@@ -66,20 +68,19 @@ export class MascotaFormularioComponent {
   guardarMascota() {
     if (this.formMascota.valid) {
       const formData = this.formMascota.value;
-// Establecer un dueño por defecto (ID 1) si no está marcado como adoptado
-const ownerId = formData.isAdopted ? formData.Owner_id_owner : '1';
-
-const mascotaData = {
-  nombre: formData.nombre,
-  raza: formData.raza,
-  genero: formData.genero,
-  fecha_nacimiento: formData.fecha_nacimiento,
-  peso: formData.peso,
-  especie: formData.especie,
-  usuario: { id_usuario: ownerId },
-  enadopcion: !formData.isAdopted
-};
+      // Asignar el ID del dueño si la mascota está adoptada, de lo contrario null
+      const ownerId = formData.isAdopted && formData.Owner_id_owner ? formData.Owner_id_owner : null;
   
+      const mascotaData = {
+        nombre: formData.nombre,
+        raza: formData.raza,
+        genero: formData.genero,
+        fecha_nacimiento: formData.fecha_nacimiento,
+        peso: formData.peso,
+        especie: formData.especie,
+        usuario: { id_usuario: ownerId },
+        enadopcion: !formData.isAdopted
+      };
       const url = this.URL_BASE + 'mascota/';
       this.httpClient.post(url, mascotaData).subscribe(
         res => {

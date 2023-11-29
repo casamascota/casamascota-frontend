@@ -6,7 +6,7 @@
       <form [formGroup]="formCirugia" (ngSubmit)="onSubmit()">
         <mat-form-field style="width: 45%; margin-right: 1em;">
           <mat-label>Fecha de la cirugia:</mat-label>
-          <input matInput type="date" formControlName="fecha" />
+          <input matInput [min]="minDate" type="date" formControlName="fecha" />
           <div *ngIf="formCirugia.controls['fecha'].invalid && formCirugia.controls['fecha'].touched">
             <div *ngIf="formCirugia.controls['fecha'].errors?.['required']"></div>
           </div>

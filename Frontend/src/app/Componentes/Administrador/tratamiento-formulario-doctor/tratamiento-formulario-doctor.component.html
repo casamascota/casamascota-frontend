@@ -5,14 +5,14 @@
       <form [formGroup]="formTratamiento" (ngSubmit)="onSubmit()">
         <mat-form-field class="ancho">
           <mat-label>Fecha de inicio:</mat-label>
-          <input matInput type="date" formControlName="fecha_inicio" />
+          <input matInput [min]="minDate"  type="date" formControlName="fecha_inicio" />
           <div *ngIf="formTratamiento.controls['fecha_inicio'].invalid && formTratamiento.controls['fecha_inicio'].touched">
             <div *ngIf="formTratamiento.controls['fecha_inicio'].errors?.['required']"></div>
           </div>
         </mat-form-field>
         <mat-form-field class="ancho">
           <mat-label>Fecha de final:</mat-label>
-          <input matInput type="date" formControlName="fecha_final" />
+          <input matInput [min]="minDate"  type="date" formControlName="fecha_final" />
           <div *ngIf="formTratamiento.controls['fecha_final'].invalid && formTratamiento.controls['fecha_final'].touched">
             <div *ngIf="formTratamiento.controls['fecha_final'].errors?.['required']"></div>
           </div>
