@@ -48,7 +48,7 @@
 
 
         <div class="collapse navbar-collapse px-3" id="navbarCollapse">
-            <div class="navbar-nav mr-auto py-0">
+            <div class="navbar-nav  py-0">
                 <a href="/" class="nav-item nav-link">Inicio</a>
                 <!-- Links visibles para todos los usuarios -->
                 <a href="/educativo" class="nav-item nav-link" >Edúcate</a>
@@ -56,13 +56,12 @@
                 <a href="/adopciones" class="nav-item nav-link">Adopta un<br> nuevo amigo</a>
                 <a href="/agenda-cita-doctor" class="nav-item nav-link">Reserva <br> una cita</a>
                 <!-- Links específicos para roles -->
-
                 <div *ngIf="auth0.isAuthenticated$ | async">
                 <!-- Ejemplo para el rol 'doctor' -->
                     <ng-container *ngIf="roles | async as userRoles">
                         <a href="/citas-agendadas-doctor" class="nav-item nav-link" *ngIf="userRoles.includes('doctor')">Citas agendadas</a>
                        <!-- Solo lo ven los enfermeros, doctores y admin -->
-                        <div class="nav-item dropdown" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">
+                        <div class="nav-item dropdown" >
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="/cirugia-formulario-doctor" class="dropdown-item" *ngIf="userRoles.includes('doctor') || userRoles.includes('enfermero') || userRoles.includes('admin')">Agregar cirugia</a>

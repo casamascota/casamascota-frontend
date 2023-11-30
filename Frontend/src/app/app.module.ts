@@ -84,6 +84,9 @@ import { LoginButtonComponent } from './Componentes/Navbar/login-button/login-bu
 import { LogoutButtonComponent } from './Componentes/Navbar/logout-button/logout-button.component';
 import { UserProfileComponent } from './Componentes/Navbar/user-profile/user-profile.component';
 import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona-component/crear-persona-component.component';
+import { UnauthorizedPageComponent } from './Componentes/unauthorized-page/unauthorized-page.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -132,6 +135,7 @@ import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona
     LogoutButtonComponent,
     UserProfileComponent,
     CrearPersonaComponent,
+    UnauthorizedPageComponent,
 
   ],
   imports: [
@@ -167,7 +171,11 @@ import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona
       }
     }),
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },],
 
   bootstrap: [AppComponent]
 })

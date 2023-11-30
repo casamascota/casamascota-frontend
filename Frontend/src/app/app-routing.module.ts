@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
+import { inject } from '@angular/core';
+import { AuthGuardFunctions } from './guards/auth.guard';
 
 import { AgregarRegistroComponent } from './Componentes/Administrador/agregar-registro/agregar-registro.component';
 import { ListasRegistrosComponent } from './Componentes/Administrador/listas-registros/listas-registros.component';
@@ -44,48 +45,85 @@ import { TratamientoFormularioDoctorComponent } from './Componentes/Administrado
 //Mapa
 import { MapaComponent } from './Componentes/GIS/mapa/mapa.component';
 import { CrearPersonaComponent } from './Componentes/Administrador/crear-persona-component/crear-persona-component.component';
+import { UnauthorizedPageComponent } from './Componentes/unauthorized-page/unauthorized-page.component';
 
 /*
 // Componentes EF
 import { PresentacionComponent } from './FinalTecWeb/Presentacion/Presentacion.component';
 import { ListasRegistrosComponent } from './Componentes/Administrador/listas-registros/listas-registros.component';*/
 const routes: Routes = [
-  
-  { path: "educativo", component: RecursosEducativosComponent},
-  { path: 'mascota-formulario' , component: MascotaFormularioComponent },
-  { path: "adopciones", component: AdopcionesComponent},
-  { path: "registro", component: ListasRegistrosComponent },
-  { path: "agregar_registro", component: AgregarRegistroComponent },
-  { path: 'actualizar_registro', component: ActualizarRegistroComponent },
-  { path: "citas", component: ReservaCitaComponent },
-  { path: "citas-agendadas", component: ListaCitasComponent },
-  { path: "lista-mascotas", component: ListaMascotasComponent },
-  { path: "revision" , component: FormRevisionComponent},
-  { path: "estilista" , component: FormEstilistaComponent},
-  { path: "tratamiento-formulario" , component: TratamientoFormularioComponent},
-  { path: "cirugia-formulario" , component: CirugiaFormularioComponent},
-  { path: "lista-cirugia" , component: ListaCirugiasComponent},
-  { path: "lista-tratamientos" , component: ListaTratamientosComponent},
+  //Publicos
   { path: "" , component: InicioComponent},
   { path: "nosotros" , component: NosotrosComponent},
   { path: "app-navbar" , component:  NavBarComponent},
   { path: "app-footer" , component: FooterComponent },
   { path: "app-navbar-principal" , component: NavbarPrincipalComponent },
-  { path: "app-navbar-owner" , component: NavbarOwnerComponent },
-  { path: "inicio-owner" , component: InicioOwnerComponent },
   { path: "educativos-owner" , component: RecursosEducativosOwnerComponent },
-  { path: "app-navbar-doctor" , component: NavbarDoctorComponent },
-  { path: "lista-tratamientos-doctor" , component: ListaTratamientosDoctorComponent },
-  { path: "lista-cirugias-doctor" , component: ListaCirugiasDoctorComponent },
-  { path: "citas-agendadas-doctor" , component: CitasAgendadasDoctorComponent },
-  { path: "cirugia-formulario-doctor" , component: CirugiaFormularioDoctorComponent },
-  { path: "agenda-cita-doctor" , component: AgendaCitaDoctorComponent},
-  { path: "app-navbar-administrador" , component: NavbarAdministradorComponent },
-  { path: "inicio-administrador" , component: InicioAdminComponent },
   { path: "app-mapa" , component: MapaComponent },
-  { path: "crear-persona" , component: CrearPersonaComponent },
-  { path: "tratamiento-formulario-doctor" , component: TratamientoFormularioDoctorComponent },
-  
+  { path: "educativo", component: RecursosEducativosComponent},
+  { path: 'mascota-formulario' , component: MascotaFormularioComponent },
+  { path: "adopciones", component: AdopcionesComponent},
+  { path: "unauthorized" , component: UnauthorizedPageComponent },
+  //Con roles
+  { path: "registro", component: ListasRegistrosComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdmin()]
+},
+  { path: "agregar_registro", component: AgregarRegistroComponent
+},
+  { path: 'actualizar_registro', component: ActualizarRegistroComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdmin()]
+},
+  { path: "citas", component: ReservaCitaComponent },
+  { path: "citas-agendadas", component: ListaCitasComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+  { path: "lista-mascotas", component: ListaMascotasComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+
+  { path: "tratamiento-formulario" , component: TratamientoFormularioComponent,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "cirugia-formulario" , component: CirugiaFormularioComponent,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "lista-cirugia" , component: ListaCirugiasComponent,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+  { path: "lista-tratamientos" , component: ListaTratamientosComponent,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+
+  { path: "lista-tratamientos-doctor" , component: ListaTratamientosDoctorComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+  { path: "lista-cirugias-doctor" , component: ListaCirugiasDoctorComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "citas-agendadas-doctor" , component: CitasAgendadasDoctorComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "cirugia-formulario-doctor" , component: CirugiaFormularioDoctorComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "agenda-cita-doctor" , component: AgendaCitaDoctorComponent,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+  { path: "crear-persona" , component: CrearPersonaComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctorEnfermero()]
+},
+  { path: "tratamiento-formulario-doctor" , component: TratamientoFormularioDoctorComponent ,
+  canActivate: [() => inject(AuthGuardFunctions).canActivateAdminDoctor()]
+},
+    //Revisar este path revision
+    { path: "revision" , component: FormRevisionComponent},
+    //OBSOLETOS
+    { path: "estilista" , component: FormEstilistaComponent},
+    { path: "inicio-administrador" , component: InicioAdminComponent },
+    { path: "inicio-owner" , component: InicioOwnerComponent },
+    { path: "app-navbar-owner" , component: NavbarOwnerComponent },
+    { path: "app-navbar-doctor" , component: NavbarDoctorComponent },
+    { path: "app-navbar-administrador" , component: NavbarAdministradorComponent },
 ];
 
 
